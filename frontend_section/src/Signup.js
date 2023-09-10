@@ -33,7 +33,7 @@ function Signup() {
         <div className='d-flex justify-content-center align-items-center vh-100 bg-color'>
             <div className='rounded container-1'>
                 <div className="header">
-                    <div className="text">Sign In</div>
+                    <div className="text">Register</div>
                     <div className="underline"></div>
                 </div>
                 <form action="" onSubmit={handleSubmit}>
