@@ -1,4 +1,17 @@
-function validation(values) {
+import { toast } from 'react-toastify';
+
+function validation(id, email, password) {
+    let isproceed = true;
+    let errormessage = 'Please enter the value in ';
+    if (id === null || id === "") {
+        isproceed = false;
+        errormessage += 'Username';
+    }
+    if(!isproceed) {
+        toast.warning(errormessage)
+    }
+    return isproceed;
+    /*
     let error = {}
     const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
@@ -28,6 +41,7 @@ function validation(values) {
         error.password = ""
     }
     return error
+    */
 }
 
 export default validation;

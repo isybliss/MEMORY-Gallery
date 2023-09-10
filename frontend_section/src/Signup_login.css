@@ -43,7 +43,9 @@
     margin-bottom: 20px;
     gap: 5px;
 }
-
+.errmsg{
+    color: red;
+}
 .forgot-password{
     color: #797979;
     font-size: 15px;
