@@ -1,17 +1,4 @@
-import { toast } from 'react-toastify';
-
-function validation(id, email, password) {
-    let isproceed = true;
-    let errormessage = 'Please enter the value in ';
-    if (id === null || id === "") {
-        isproceed = false;
-        errormessage += 'Username';
-    }
-    if(!isproceed) {
-        toast.warning(errormessage)
-    }
-    return isproceed;
-    /*
+function validation(values) {
     let error = {}
     const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/
@@ -36,12 +23,11 @@ function validation(id, email, password) {
         error.password = "Input password"
     }
     else if(!password_pattern.test(values.password)) {
-        error.password = "Password must be atleast 8 characters including capital letters and numbers"
+        error.password = "Password should be atleast 8 characters including uppercase, lowercase and numbers"
     }else {
         error.password = ""
     }
     return error
-    */
 }
 
 export default validation;
