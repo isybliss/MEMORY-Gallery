@@ -1,0 +1,12 @@
+.home-header{
+    width: 100%;
+    background-color: blue;
+    color: #fff;
+    padding: 1%;
+}
+
+.home-link{
+    text-decoration: none;
+    color: white;
+    padding: 2px;
+}

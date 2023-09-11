@@ -1,59 +1,78 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
-import Validation from './LoginValidation';
+import React, {useEffect, useState} from 'react'; 
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup_login.css';
+import { toast } from 'react-toastify';
 
+function  Login() {
+    const [username, usernameupdate] = useState("");
+    const [password, passwordupdate] = useState("");
 
-function Login() {
-    const [values, setValues] = useState({
-        email: '',
-        password: ''
-    })
     const navigate = useNavigate();
-    
-    const [errors, setErrors] = useState({})
-    const handleInput = (event) => {
-         setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
-    }
-    const handleSubmit =(event) => {
-        event.preventDefault();
-        const err = Validation(values);
-        setErrors(err);
-        if(err.email === "" && err.password === "") {
-            axios.post('http://localhost:8081/login', values)
-            .then(res => {
-                if(res.data === "Success") {
-                    navigate('/home')
+
+    useEffect(() => {
+        sessionStorage.clear();
+    }, []);
+
+    const proceedLogin = (e) => {
+        e.preventDefault();
+        if(validate()) {
+            //console.log("proceed")
+            fetch("http://localhost:8000/user/"+username).then((res) =>{
+                return res.json();
+            }).then((resp)=>{
+                console.log(resp);
+                if(Object.keys(resp).length === 0) {
+                    toast.error("Please enter valid username");
                 } else {
-                    alert("No record existed"); 
+                    if (resp.password === password) {
+                        toast.success('Success');
+                        sessionStorage.setItem('username',username)
+                        navigate('/')
+                    }else {
+                        toast.error("Please enter valid credentials")
+                    }
                 }
-            })
-            .catch(err => console.log(err));
+            }).catch((err)=>{
+                toast.error("Login failed due to :"+err.message)
+            });
         }
     }
+
+    const validate = () => {
+        let result = true;
+        if(username === "" || username === null){
+            result = false;
+            toast.warning("Please enter valid Username")
+        }
+        if(password === "" || password === null){
+            result = false;
+            toast.warning("Please enter correct password")
+        }
+        return result;
+    }
+
     return (
-        <div className='d-flex justify-content-center align-items-center bg-color vh-100'>
+        <div className='d-flex justify-content-center align-items-center vh-100 bg-color'>
             <div className='rounded container-1'>
                 <div className="header">
                     <div className="text">Sign In</div>
                     <div className="underline"></div>
                 </div>
-                <form action="" onSubmit={handleSubmit}>
+                <form onSubmit={proceedLogin}>
                     <div className='inputs'>
-                        <label htmlFor='email'><strong>Email</strong></label>
-                        <input type='email' placeholder='Enter Email' name='email'
-                        onChange={handleInput} className='form-control' />
-                        {errors.email && <span className='text-danger'> {errors.email}</span>}
+                        <label htmlFor='name'><strong>Username</strong><span className='errmsg'>*</span></label>
+                        <input type='text' placeholder='Enter Username' name='name'
+                        value={username} onChange={e=>usernameupdate(e.target.value)} className='form-control' />
                     </div>
+                    
                     <div className='inputs'>
-                        <label htmlFor='password'><strong>Password</strong></label>
+                        <label htmlFor='password'><strong>Password</strong><span className='errmsg'>*</span></label>
                         <input type='password' placeholder='Enter Password' name='password'
-                        onChange={handleInput} className='form-control' />
-                        {errors.password && <span className='text-danger'> {errors.password}</span>}
+                        value={password} onChange={e=>passwordupdate(e.target.value)} className='form-control' />
+                        
                     </div>
-                    <button type='submit' className='btn-success rounded submit'>Log in</button>
-                    <p className='forgot-password'>Does not have an account yet?</p>
+                    <button type='submit' className='btn-success rounded submit'>Login</button>
+                    <p className='forgot-password'>Don't have an account ?</p>
                     <Link to="/signup" className='border bg-light rounded login'>Create Account</Link>
                 </form>
             </div>
