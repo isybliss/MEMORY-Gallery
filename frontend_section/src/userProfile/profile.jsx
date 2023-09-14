@@ -9,6 +9,13 @@ const Profile = () => {
                 <div className='mb-5'>
                     <img src={isy}style={{width:"200px", height:"200px",borderRadius:"100px"}} />
                 </div>
+
+                <div className='col-md-4 col-sm-12'>
+                    <p>Bio</p>
+                    <textarea>
+
+                    </textarea>
+                </div>
                 <button className='border-none rounded-5 ms-4 btn btn-primary'>Edit Profile</button>
             </div>
             <div className='col-6'>
@@ -24,13 +31,6 @@ const Profile = () => {
                     <h4>Joined On</h4>
                     <p>2020-12-03</p>
                 </div>
-                <div className='col-md-4 col-sm-12'>
-                    <p>Bio</p>
-                    <textarea>
-
-                    </textarea>
-                </div>
-                   
             </div>
         </div>
     </div>

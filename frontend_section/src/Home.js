@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 import PhotoAlbum from './photo';
-import logo from '../../frontend_section/src/images/memory-logo.png'
 
 function Home() {
     const navigate = useNavigate();
