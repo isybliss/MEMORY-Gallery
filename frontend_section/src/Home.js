@@ -6,12 +6,12 @@ import logo from '../../frontend_section/src/images/memory-logo.png'
 
 function Home() {
     const navigate = useNavigate();
-    useEffect(() => {
-        let username = sessionStorage.getItem('username');
-        if(username === '' || username === null) {
-            navigate('/login');
-        }
-    }, [])
+    // useEffect(() => {
+    //     let username = sessionStorage.getItem('username');
+    //     if(username === '' || username === null) {
+    //         navigate('/login');
+    //     }
+    // }, [])
     return (
         <div>
             <div className='home-header'>

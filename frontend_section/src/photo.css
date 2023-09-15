@@ -80,3 +80,22 @@
     color: #fff;
     cursor: pointer;
 }
+
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -8px; /* Adjust the margin as needed for spacing between images */
+  }
+  
+  .photo {
+    flex: 0 0 calc(33.33% - 16px); /* Three columns with spacing */
+    margin: 8px; /* Adjust the margin as needed for spacing between images */
+  }
+  
+  .photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }

@@ -62,10 +62,10 @@ function PhotoAlbum() {
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg></div>
     </div>
-    <div className="gallery">
+    <div className="photo-gallery">
       {photos.map((item, index)=>{
         return(
-            <div className='pics' key={index} onClick={()=> getImg( item.imageUrl )}>
+            <div className='photo' key={index} onClick={()=> getImg( item.imageUrl )}>
                 <div className=''>
                     <img src={item.imageUrl} alt={item.title} style={{width: '100%'}} />
                     <div className='card-body'>
