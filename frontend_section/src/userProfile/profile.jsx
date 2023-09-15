@@ -11,7 +11,7 @@ const Profile = () => {
                 </div>
 
                 
-                <button className='border-none rounded-5 ms-4 btn btn-primary'>Edit Profile</button>
+                <button type="submit" className='p-2 border-none rounded-5 ms-4 btn btn-primary text-center'>Edit Profile</button>
             </div>
             <div className='col-6'>
                 <div className='col-md-4 col-sm-12'>
@@ -23,7 +23,7 @@ const Profile = () => {
                 <p>Isy@gmail.com</p>
                 </div>
                 <div className='col-md-2 col-sm-12'>
-                    <p>Bio</p>
+                    <h4>Bio</h4>
                     <textarea>
 
                     </textarea>

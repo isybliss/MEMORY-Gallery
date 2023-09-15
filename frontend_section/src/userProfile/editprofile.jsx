@@ -47,6 +47,7 @@ const EditProfile = () => {
               defaultValue={""}
             />
           </div>
+          <button type="submit" className='p-2 w-25 text-center border-none rounded-5 ms-4 btn btn-primary'>Submit</button>
         </form>
       </div>
     </div>

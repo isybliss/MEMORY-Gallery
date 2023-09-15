@@ -7,8 +7,9 @@ import background from "../src/images/cgpa-background.jpg";
 import dominic from "../src/images/dominic.jpg";
 import link from "../src/images/failed links.png";
 import IMg6 from "../src/images/IMG-20220315-WA0019.jpg";
-
+import { Nav, Tab } from 'react-bootstrap';
 function PhotoAlbum() {
+    const [key, setKey] = useState('default');
     // const [photos, setPhotos] = useState([]);
     const photos = [
         {
@@ -62,21 +63,45 @@ function PhotoAlbum() {
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg></div>
     </div>
-    <div className="photo-gallery">
-      {photos.map((item, index)=>{
-        return(
-            <div className='photo' key={index} onClick={()=> getImg( item.imageUrl )}>
-                <div className=''>
-                    <img src={item.imageUrl} alt={item.title} style={{width: '100%'}} />
-                    <div className='card-body'>
-                        <h5 className='card-title'>{photos.title}</h5>
-                        <p className='card-text'>{photos.description}</p>
-                    </div>
-                </div>
-            </div>
-        )
-      })}
+    <div>
+      <Nav variant="tabs" defaultActiveKey="default" onSelect={(k) => setKey(k)}>
+        <Nav.Item>
+          <Nav.Link eventKey="Album">Album</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="active">Memories</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <Tab.Content>
+        <Tab.Pane eventKey="Album">
+        <div className="photo-gallery">
+   
+   
+   {photos.map((item, index)=>{
+     return(
+         <div className='photo' key={index} onClick={()=> getImg( item.imageUrl )}>
+             <div className=''>
+                 <img src={item.imageUrl} alt={item.title} style={{width: '100%'}} />
+                 <div className='card-body'>
+                     <h5 className='card-title'>{photos.title}</h5>
+                     <p className='card-text'>{photos.description}</p>
+                 </div>
+             </div>
+         </div>
+     )
+   })}
+ </div>
+        </Tab.Pane>
+        <Tab.Pane eventKey="active">
+          {/* Content for the "Active" tab */}
+        </Tab.Pane>
+        <Tab.Pane eventKey="disabled">
+          {/* Content for the "Disabled" tab */}
+        </Tab.Pane>
+      </Tab.Content>
     </div>
+   
     </>
   );
 }; 

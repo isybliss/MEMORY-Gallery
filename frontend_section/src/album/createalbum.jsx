@@ -78,7 +78,7 @@ function CreateAlbum() {
         </div>
        
         </div>
-        <button type="submit" className='p-2 text-white w-25 mt-4 text-center border-none bg-primary'>Create</button>
+        <button type="submit" className='p-2 w-25 text-center border-none rounded-5 ms-4 btn btn-primary'>Create</button>
 
         {/* <div className='row mb-4 d-flex justify-content-center'>
         <div className='col-lg-6 mb-3 ms-2'>
