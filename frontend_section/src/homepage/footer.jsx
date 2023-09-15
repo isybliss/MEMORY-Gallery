@@ -38,7 +38,7 @@ const Footer = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
       >
         © 2020 Copyright: 
-        <a className="text-white text-decoration-none" href="https://mdbootstrap.com/">
+        <a className="text-white text-decoration-none m-1" href="https://mdbootstrap.com/">
          MemoryGallery.com
         </a>
       </div>
