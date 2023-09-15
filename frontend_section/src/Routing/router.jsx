@@ -11,6 +11,7 @@ import EditProfile from '../userProfile/editprofile'
 const Router = () => {
   return (
   <Routes>
+    <Route path='/' element={<Home/>}/>
     <Route path="/editprofile" element={<EditProfile/>}/>
     <Route path="/userprofile" element={<Profile/>}/>
     <Route path='/login' element={<Login />}></Route>
