@@ -16,7 +16,6 @@ const GetMemories = () => {
             imageUrl: isioma,
         },
         {
-            
             id:1,
             title:'Photo1',
             description: " A beautiful landscape",
