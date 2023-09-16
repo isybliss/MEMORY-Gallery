@@ -60,9 +60,9 @@
 }
 .model img{
     width: auto;
-    max-width: 100%;
+    max-width: 430px;
     height: auto;
-    max-height: 100%;
+    max-height: 430px;
     display: block;
     line-height: 0;
     box-sizing: border-box;
@@ -95,9 +95,11 @@
   }
   
   .photo img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Ensure the image takes 100% of its container's width */
+    max-height: 100%; /* Limit the image's height to avoid it being too large */
+    object-fit: cover; /* Maintain aspect ratio without stretching */
     display: block;
   }
+  
 
   
