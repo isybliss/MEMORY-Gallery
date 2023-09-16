@@ -88,7 +88,7 @@ const Memories = () => {
             </div>
 
             <div className='col-lg-6 col-sm-6 d-flex mb-3 '>
-              <label className='text-lg-start text-center'>Cover Image:</label>
+              <label className='text-lg-start text-center'>Image:</label>
               <input
                 type="file"
                 accept="image/*"
