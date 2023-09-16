@@ -12,3 +12,22 @@
 }
 
 
+/* Custom styles to remove border and adjust tab alignment */
+.custom-tabs {
+    border: none !important;
+  }
+  
+  .custom-tabs .nav-item {
+    
+    border-bottom: 1px solid transparent; /* This hides the bottom border */
+  }
+  
+  .custom-tabs .nav-item:hover {
+    border-bottom: 1px solid #1660a9; /* Add a border on hover */
+  }
+  
+  .custom-tabs .nav-item.active {
+    border-bottom: 1px solid red; /* Change the color for the default active tab */
+  }
+
+  

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React,  {useState} from 'react'
 import "./photo.css";
 import { closeIcon } from 'bootstrap/dist/css/bootstrap.css';
 import isy from "../src/images/isy.jpg";
@@ -7,16 +7,8 @@ import background from "../src/images/cgpa-background.jpg";
 import dominic from "../src/images/dominic.jpg";
 import link from "../src/images/failed links.png";
 import IMg6 from "../src/images/IMG-20220315-WA0019.jpg";
-
-function PhotoAlbum() {
-    // const [photos, setPhotos] = useState([]);
-    const photos = [
-        {
-            id:1,
-            title:'Photo1',
-            description: " A beautiful landscape",
-            imageUrl: isy
-        },
+const GetMemories = () => {
+    const memories = [
         {
             id:2,
             title:'Photo2',
@@ -24,16 +16,27 @@ function PhotoAlbum() {
             imageUrl: isioma,
         },
         {
-            id:3,
-            title:'Photo3',
-            description: 'moonlight over mountain',
-            imageUrl: dominic,
+            
+            id:1,
+            title:'Photo1',
+            description: " A beautiful landscape",
+            imageUrl: isy
         },
+    
         {
             id:4,
             title:'Photo4',
             description: " A beautiful sea",
             imageUrl: background,
+           
+        },
+        {
+          
+
+            id:3,
+            title:'Photo3',
+            description: 'moonlight over mountain',
+            imageUrl: dominic,
         },
         {
             id:5,
@@ -76,7 +79,7 @@ function PhotoAlbum() {
         </div>
   
         <div className="photo-gallery">
-          {photos?.map((item, index) => (
+          {memories?.map((item, index) => (
             <div className="photo" key={index} onClick={() => getImg(item.imageUrl, item.title, item.description)}>
               <div className="">
                 <img src={item.imageUrl} alt="hello" style={{ width: '100%' }} />
@@ -89,8 +92,7 @@ function PhotoAlbum() {
           ))}
         </div>
       </>
-    );
-  
-}; 
+    )
+}
 
-export default PhotoAlbum;
+export default GetMemories
