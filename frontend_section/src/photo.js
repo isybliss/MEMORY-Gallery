@@ -7,8 +7,9 @@ import background from "../src/images/cgpa-background.jpg";
 import dominic from "../src/images/dominic.jpg";
 import link from "../src/images/failed links.png";
 import IMg6 from "../src/images/IMG-20220315-WA0019.jpg";
-
+import { Nav, Tab } from 'react-bootstrap';
 function PhotoAlbum() {
+    const [key, setKey] = useState('default');
     // const [photos, setPhotos] = useState([]);
     const photos = [
         {
