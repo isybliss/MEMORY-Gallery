@@ -1,7 +1,7 @@
 import { useEffect ,useState} from 'react';
 import './Home.css';
 import { Link, useNavigate } from 'react-router-dom';
-import PhotoAlbum from './photo';
+import PhotoAlbum from './getAlbum';
 import { Tab, TabPane, Tabs } from 'react-bootstrap';
 import GetMemories from './getMemories';
 function Home() {
@@ -24,7 +24,7 @@ function Home() {
                 <Link style={{float:"right"}} to={'/login'} className='home-link'>Logout</Link> */}
             </div>
             <h1 className='text-center'>Memory Gallery</h1>
-            <p className='text-center'>A simple plan for you and your memory</p>
+            <p className='text-center'>Every Click, a Story. Every Photo, a Memory</p>
 
             <Tabs defaultActiveKey="album" id="uncontrolled-tab-example"  onSelect={handleTabSelect} activeKey={selectedTab} className=' custom-tabs d-flex justify-content-evenly'>
       <TabPane eventKey="album" title="Album" className='border-none'>

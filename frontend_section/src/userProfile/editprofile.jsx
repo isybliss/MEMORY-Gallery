@@ -4,7 +4,7 @@ const EditProfile = () => {
   return (
     <div className="container">
       <div className='row justify-content-center mt-5'>
-        <form className='col-lg-6'>
+        <form className='col-lg-6 mb-5'>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               <strong>Username</strong>
