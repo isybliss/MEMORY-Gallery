@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import "./photo.css";
 import { closeIcon } from 'bootstrap/dist/css/bootstrap.css';
-import isy from "../src/images/isy.jpg";
-import isioma from "../src/images/isy2.jpg";
-import background from "../src/images/cgpa-background.jpg";
-import dominic from "../src/images/dominic.jpg";
-import link from "../src/images/failed links.png";
-import IMg6 from "../src/images/IMG-20220315-WA0019.jpg";
+import  img1 from "../src/images/img1.jpg";
+import  img2 from "../src/images/img2.jpg";
+import  img3 from "../src/images/img3.jpg";
+import  img4 from "../src/images/img4.jpg";
+import  img5 from "../src/images/img5.jpg";
+import  img6 from "../src/images/img6.jpg";
 import { Nav, Tab } from 'react-bootstrap';
 function PhotoAlbum() {
     const [key, setKey] = useState('default');
@@ -16,37 +16,37 @@ function PhotoAlbum() {
             id:1,
             title:'Photo1',
             description: " A beautiful landscape",
-            imageUrl: isy
+            imageUrl: img3
         },
         {
             id:2,
             title:'Photo2',
             description: 'sunset over mountain',
-            imageUrl: isioma,
+            imageUrl:  img2,
         },
         {
             id:3,
             title:'Photo3',
             description: 'moonlight over mountain',
-            imageUrl: dominic,
+            imageUrl: img1,
         },
         {
             id:4,
             title:'Photo4',
             description: " A beautiful sea",
-            imageUrl: background,
+            imageUrl:  img5,
         },
         {
             id:5,
             title:'Photo5',
             description: " A beautiful landscape",
-            imageUrl: link
+            imageUrl:  img4,
         },
         {
             id:1,
             title:'Photo6',
             description: " A beautiful landscape",
-            imageUrl: IMg6
+            imageUrl: img6
         },
     ]
     const [model, setModel] = useState(false);

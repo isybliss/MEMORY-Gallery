@@ -5,56 +5,66 @@ import { toast } from 'react-toastify';
 
 function Signup() {
 
-    const [id, idchange] = useState("");
+    const [username, usernamechange] = useState("");
     const [email, emailchange] = useState("");
     const [password, passwordchange] = useState("");
 
     const navigate = useNavigate();
 
-    const isValidate = () => {
-        let isproceed = true;
-        let errormessage = 'Please enter the value in ';
-        if (id === null || id === "") {
-            isproceed = false;
-            errormessage += 'Username';
-        }
-        if (email === null || email === "") {
-            isproceed = false;
-            errormessage += ' Email';
-        }
-        if (password === null || password === "") {
-            isproceed = false;
-            errormessage += ' Password';
-        }
-        if(!isproceed) {
-            toast.warning(errormessage);
-        }else {
-            if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/.test(password)) {
+    // const isValidate = () => {
+    //     let isproceed = true;
+    //     let errormessage = 'Please enter the value in ';
+    //     if (username === null || username === "") {
+    //         isproceed = false;
+    //         errormessage += 'Username';
+    //     }
+    //     if (email === null || email === "") {
+    //         isproceed = false;
+    //         errormessage += ' Email';
+    //     }
+    //     if (password === null || password === "") {
+    //         isproceed = false;
+    //         errormessage += ' Password';
+    //     }
+    //     if(!isproceed) {
+    //         toast.warning(errormessage);
+    //     }else {
+    //         if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/.test(password)) {
 
-            }else {
-                isproceed = false;
-                toast.warning("Password shouls be atleast 8 characters including uppercase, lowercase and numbers")
-            }
-        }
-        return isproceed;
-    }    
-    const handleSubmit =(e) => {
-        
+    //         }else {
+    //             isproceed = false;
+    //             toast.warning("Password shouls be atleast 8 characters including uppercase, lowercase and numbers")
+    //         }
+    //     }
+    //     return isproceed;
+    // }    
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let regobj = { id, email, password };
-        if(isValidate()) {
-            fetch("http://localhost:8000/user", {
-                method:"POST",
-                headers:{ "content-type":"application/json" },
-                body:JSON.stringify(regobj)
-            }).then((res) => {
-                toast.success('Registeration Successfully');
-                navigate('/login')
-            }).catch((err)=>(
-                toast.error('Failed :'+err.message)
-            ));
-        }
-    }
+        debugger;
+        let regobj = { email,
+            username,
+            password, };
+        // if (isValidate()) {
+            fetch("http://127.0.0.1:8000/register/", {  // Updated fetch URL
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(regobj),
+            })
+                .then((res) => {
+                    debugger;
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    toast.success('Registration Successful');
+                    console.log("successful")
+                    navigate('login/');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    toast.error('Registration failed: ' + error.message);
+                });
+        // }
+    };
     return (
         <div className='d-flex justify-content-center align-items-center vh-100 bg-color'>
             <div className='rounded container-1'>
@@ -64,9 +74,9 @@ function Signup() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='inputs'>
-                        <label htmlFor='name'><strong>Username</strong><span className='errmsg'>*</span></label>
-                        <input type='text' placeholder='Enter Username' name='name'
-                        value={id} onChange={e=>idchange(e.target.value)} className='form-control' />
+                        <label htmlFor='username'><strong>Username</strong><span className='errmsg'>*</span></label>
+                        <input type='text' placeholder='Enter Username' name='username'
+                        value={username} onChange={e=>usernamechange(e.target.value)} className='form-control' />
                     </div>
                     <div className='inputs'>
                         <label htmlFor='email'><strong>Email</strong><span className='errmsg'>*</span></label>
@@ -89,4 +99,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default Signup;

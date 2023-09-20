@@ -24,7 +24,7 @@ function Home() {
                 <Link style={{float:"right"}} to={'/login'} className='home-link'>Logout</Link> */}
             </div>
             <h1 className='text-center'>Memory Gallery</h1>
-            <p className='text-center'>Every Click, a Story. Every Photo, a Memory</p>
+            <p className='text-center text_color'>Every Click, a Story. Every Photo, a Memory</p>
 
             <Tabs defaultActiveKey="album" id="uncontrolled-tab-example"  onSelect={handleTabSelect} activeKey={selectedTab} className=' custom-tabs d-flex justify-content-evenly'>
       <TabPane eventKey="album" title="Album" className='border-none'>

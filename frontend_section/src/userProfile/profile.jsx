@@ -1,6 +1,49 @@
-import React from 'react'
+import React, {useState, useEffect}from 'react'
 import isy from '../images/isy.jpg'
+import axios from 'axios';
 const Profile = () => {
+    const [userData, setUserData] = useState({});
+    const apiUrl = "http://127.0.0.1:8000/profile/"
+    const valueString = sessionStorage.getItem('token');
+    const currentUser = JSON.parse(valueString);
+    const yourAuthToken = JSON.stringify(currentUser.token);
+
+    // const userId = currentUser.user_id;
+    // const username = currentUser.username;
+
+
+    useEffect(() => {
+        
+        debugger;
+        axios.get(apiUrl, { headers: { Authorization: `Token ${yourAuthToken}` } })
+          .then(response => {
+            debugger
+            console.log(response)
+            setUserData(response.data);
+          })
+          .catch(error => console.error('Error fetching user profile:', error));
+      }, []);
+
+    // useEffect(() => {
+    //     const valueString = sessionStorage.getItem('token');
+    //     const yourAuthToken = valueString;
+    //     const apiUrl = "http://127.0.0.1:8000/profile/"
+    // debugger;
+    //     // GET request to fetch user profile data
+    //     fetch(apiUrl, {
+    //       method: 'GET',
+    //       headers: {
+    //         'Authorization': `Token ${yourAuthToken}`
+    //       }
+    //     })
+    //       .then(response => response.json())
+    //       .then(data => {
+    //         debugger;
+    //         console.log(data);
+    //         setUserData(data);
+    //       })
+    //       .catch(error => console.error('Error fetching user profile:', error));
+    //   }, [apiUrl]);
   return (
     <div className='container col-12 mt-3'>
         <h3 className='mb-4'>My Profile</h3>

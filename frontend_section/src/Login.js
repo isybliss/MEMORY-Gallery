@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Signup_login.css';
 import { toast } from 'react-toastify';
+import axios from "axios";
 
 function  Login() {
     const [username, usernameupdate] = useState("");
@@ -9,47 +10,62 @@ function  Login() {
 
     const navigate = useNavigate();
 
+    const userData = {
+        username,
+        password,
+      };
+  
+    const proceedLogin = (e) => {
+        e.preventDefault();
+            debugger;
+         
+            let url = "http://127.0.0.1:8000/login/";
+            axios.post(url, userData)
+              .then((res) =>{
+                debugger;
+                console.log(res)
+                let token= JSON.stringify(res.data);
+                if (token !== null) {
+                    sessionStorage.setItem("token", token);
+                }
+                window.location.href="/"
+            })
+            .catch((err) => {
+                toast.error("Login failed due to: " + err.message);
+            });
+        // debugger;
+        // e.preventDefault();
+        // let url ="http://127.0.0.1:8000/login/";
+        // axios.post(url, userData).then((res) => {
+        //     console.log(res.data);  // Access response data with res.data
+        //     let token = res.data;  // Use res.data to access the response data
+        //     console.log(token);
+        //     if (token !== null) {
+        //       sessionStorage.setItem("token", token);
+        //     }
+        //   }).catch((err) => {
+        //     console.log(err.message)
+        //     console.log(err, "hey")
+        //     toast.error("Login failed due to: " + err.message);
+        //   });
+    }
+
     useEffect(() => {
         sessionStorage.clear();
     }, []);
 
-    const proceedLogin = (e) => {
-        e.preventDefault();
-        if(validate()) {
-            //console.log("proceed")
-            fetch("http://localhost:8000/user/"+username).then((res) =>{
-                return res.json();
-            }).then((resp)=>{
-                console.log(resp);
-                if(Object.keys(resp).length === 0) {
-                    toast.error("Please enter valid username");
-                } else {
-                    if (resp.password === password) {
-                        toast.success('Success');
-                        sessionStorage.setItem('username',username)
-                        navigate('/')
-                    }else {
-                        toast.error("Please enter valid credentials")
-                    }
-                }
-            }).catch((err)=>{
-                toast.error("Login failed due to :"+err.message)
-            });
-        }
-    }
-
-    const validate = () => {
-        let result = true;
-        if(username === "" || username === null){
-            result = false;
-            toast.warning("Please enter valid Username")
-        }
-        if(password === "" || password === null){
-            result = false;
-            toast.warning("Please enter correct password")
-        }
-        return result;
-    }
+    // const validate = () => {
+    //     let result = true;
+    //     if(username === "" || username === null){
+    //         result = false;
+    //         toast.warning("Please enter valid Username")
+    //     }
+    //     if(password === "" || password === null){
+    //         result = false;
+    //         toast.warning("Please enter correct password")
+    //     }
+    //     return result;
+    // }
 
     return (
         <div className='d-flex justify-content-center align-items-center vh-100 bg-color'>
@@ -60,7 +76,7 @@ function  Login() {
                 </div>
                 <form onSubmit={proceedLogin}>
                     <div className='inputs'>
-                        <label htmlFor='name'><strong>Username</strong><span className='errmsg'>*</span></label>
+                        <label htmlFor='username'><strong>Username</strong><span className='errmsg'>*</span></label>
                         <input type='text' placeholder='Enter Username' name='name'
                         value={username} onChange={e=>usernameupdate(e.target.value)} className='form-control' />
                     </div>

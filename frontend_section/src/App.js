@@ -1,14 +1,13 @@
  import React from 'react';
-
-import Navbar from './homepage/navbar';
 import Footer from './homepage/footer';
 import Router from './Routing/router';
 import { ToastContainer } from 'react-toastify';
+import CustomNavbar from './homepage/navbar';
 
 function App() {
   return (
     <div className="App">
-    <Navbar/>
+    <CustomNavbar/>
     <Router/>
     {/*<Footer/>*/}
     </div>
