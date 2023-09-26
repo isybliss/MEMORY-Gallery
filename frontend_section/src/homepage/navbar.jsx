@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import '../Home.css';
-import { Link } from 'react-router-dom';
-import logo from '../images/memory-logo.png';
-import $ from "jquery";
-import {FaUser} from "react-icons/fa";
+
+
+
+
+
+
+
+U&*('=\]-=0p9iuhvfc   1`1 ]'[ '=------------\\
+]
+
+=\]`
 
 const CustomNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,7 +17,6 @@ const CustomNavbar = () => {
 
 // Parse the JSON-like string into a JavaScript object
 const currentUser = JSON?.parse(valueString);
-
 // Extract the properties
 const token = currentUser?.token;
 const userId = currentUser?.user_id;
@@ -27,6 +31,13 @@ console.log('Username:', username);
   const handleToggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+const handlelogout=()=>{
+  sessionStorage.clear();
+  window.location.href="/";
+
+}
+
 
 
   return (
@@ -71,12 +82,12 @@ console.log('Username:', username);
               </li>
               </Link>)}
 
-              {currentUser !== null ?  <Link to="/login">
-              <li className="nav-item me-3 d-flex align-items-center">
+              {currentUser !== null ?  
+              <li className="nav-item me-3 d-flex align-items-center"  onClick={handlelogout}>
                 <FaUser className='d-inline '/>
                 <a className="nav-link active fw-bold " aria-current="page" href="#">Logout</a>
               </li>
-              </Link> :(
+         :(
               <Link to="/login">
               <li className="nav-item me-3 d-flex align-items-center">
                 <FaUser className='d-inline '/>
@@ -98,41 +109,5 @@ console.log('Username:', username);
 };
 
 
-//   <>
-  //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  //   <div className="container-fluid">
-  //     <button
-  //       className="navbar-toggler"
-  //       type="button"
-  //       data-bs-toggle="collapse"
-  //       data-bs-target="#navbarTogglerDemo03"
-  //       aria-controls="navbarTogglerDemo03"
-  //       aria-expanded="false"
-  //       aria-label="Toggle navigation"
-  //     >
-  //       <span className="navbar-toggler-icon" />
-  //     </button>
-  //     <a className="navbar-brand" href="#">
-  //       <img src={logo} style={{width:"50px",height:"50px"}}/>
-  //     </a>
-  //     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-  //       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-  //         <li className="nav-item">
-  //           <Link to="/" className="nav-link active" aria-current="page" href="#">
-  //             Album
-  //           </Link>
-  //         </li>
-  //         <li className="nav-item">
-  //           <a className="nav-link" href="#">
-  //             Memories
-  //           </a>
-  //         </li>
-  //       </ul>
-  //       <div>
-  //           {/* <span className='ms-2'>Account</span> */}
-  //           <span className='ms-2'>Sign-up</span>
-  //           <span className='ms-3'>Login</span></div>
-  //     </div>
-  //   </div>
-  // </nav>
+
 export default CustomNavbar

@@ -19,7 +19,7 @@ function  Login() {
         e.preventDefault();
             debugger;
          
-            let url = "http://127.0.0.1:8000/login/";
+            let url = "https://memorygallery.onrender.com/login/";
             axios.post(url, userData)
               .then((res) =>{
                 debugger;

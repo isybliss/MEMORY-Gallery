@@ -45,7 +45,7 @@ function Signup() {
             username,
             password, };
         // if (isValidate()) {
-            fetch("http://127.0.0.1:8000/register/", {  // Updated fetch URL
+            fetch("https://memorygallery.onrender.com/register/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(regobj),
@@ -57,7 +57,7 @@ function Signup() {
                     }
                     toast.success('Registration Successful');
                     console.log("successful")
-                    navigate('login/');
+                    navigate('/login');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
