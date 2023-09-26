@@ -45,7 +45,9 @@ function Signup() {
             username,
             password, };
         // if (isValidate()) {
-            fetch("http://127.0.0.1:8000/register/", {  // Updated fetch URL
+            // fetch("https://domvev.pythonanywhere.com/register/",
+            fetch("http://127.0.0.1:8000/register/",
+             {  // Updated fetch URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(regobj),
@@ -86,7 +88,7 @@ function Signup() {
                     </div>
                     <div className='inputs'>
                         <label htmlFor='password'><strong>Password</strong><span className='errmsg'>*</span></label>
-                        <input type='password' placeholder='Enter Password' name='password'
+                        <input type='password' required placeholder='Enter Password' name='password'
                         value={password} onChange={e=>passwordchange(e.target.value)} className='form-control' />
                         
                     </div>

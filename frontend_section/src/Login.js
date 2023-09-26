@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Signup_login.css';
 import { toast } from 'react-toastify';
 import axios from "axios";
+import Toaster from './Alert/sweetAlert';
 
 function  Login() {
     const [username, usernameupdate] = useState("");
@@ -19,6 +20,7 @@ function  Login() {
         e.preventDefault();
             debugger;
          
+            // let url = "https://domvev.pythonanywhere.com/login/";
             let url = "http://127.0.0.1:8000/login/";
             axios.post(url, userData)
               .then((res) =>{
@@ -28,7 +30,7 @@ function  Login() {
                 if (token !== null) {
                     sessionStorage.setItem("token", token);
                 }
-                window.location.href="/"
+               Toaster().successAlert("You've logged In Successfully", "/")
             })
             .catch((err) => {
                 toast.error("Login failed due to: " + err.message);
@@ -77,13 +79,13 @@ function  Login() {
                 <form onSubmit={proceedLogin}>
                     <div className='inputs'>
                         <label htmlFor='username'><strong>Username</strong><span className='errmsg'>*</span></label>
-                        <input type='text' placeholder='Enter Username' name='name'
+                        <input type='text' required placeholder='Enter Username' name='name'
                         value={username} onChange={e=>usernameupdate(e.target.value)} className='form-control' />
                     </div>
                     
                     <div className='inputs'>
                         <label htmlFor='password'><strong>Password</strong><span className='errmsg'>*</span></label>
-                        <input type='password' placeholder='Enter Password' name='password'
+                        <input type='password' required placeholder='Enter Password' name='password'
                         value={password} onChange={e=>passwordupdate(e.target.value)} className='form-control' />
                         
                     </div>

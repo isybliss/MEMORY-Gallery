@@ -12,21 +12,27 @@ const CustomNavbar = () => {
 
 // Parse the JSON-like string into a JavaScript object
 const currentUser = JSON?.parse(valueString);
-
 // Extract the properties
 const token = currentUser?.token;
 const userId = currentUser?.user_id;
 const username = currentUser?.username;
 // Log the retrieved values to the console
-console.log('Token:', token);
-console.log('User ID:', userId);
-console.log('Username:', username);
+// console.log('Token:', token);
+// console.log('User ID:', userId);
+// console.log('Username:', username);
   function toggle(){
     $("#panel").slideToggle();
 } 
   const handleToggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+const handlelogout=()=>{
+  sessionStorage.clear();
+  window.location.href="/";
+
+}
+
 
 
   return (
@@ -51,32 +57,47 @@ console.log('Username:', username);
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">Home</a>
               </li>
+             
               </Link>
+              {currentUser !== null ?
+              <>
+              <Link to="/userprofile">
               <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
+                <a className="nav-link" href="#">Profile</a>
               </li>
+              </Link>
+
+                <Link to="/createalbum">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Create Album</a>
+              </li>
+              </Link>
+              </>
+              :(<></>)
+              }
+              
               
             </ul>
           
             <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {currentUser !== null ? <Link to="/signup">
+              {currentUser !== null ? 
               <li className="nav-item me-3">
                 <a className="nav-link fw-bold" aria-disabled="true">Hi, {username}</a>
               </li>
-              </Link> : (
+               : (
             <Link to="/signup">
               <li className="nav-item me-3">
                 <a className="nav-link fw-bold" aria-disabled="true">Sign-up</a>
               </li>
               </Link>)}
 
-              {currentUser !== null ?  <Link to="/login">
-              <li className="nav-item me-3 d-flex align-items-center">
+              {currentUser !== null ?  
+              <li className="nav-item me-3 d-flex align-items-center"  onClick={handlelogout}>
                 <FaUser className='d-inline '/>
                 <a className="nav-link active fw-bold " aria-current="page" href="#">Logout</a>
               </li>
-              </Link> :(
+         :(
               <Link to="/login">
               <li className="nav-item me-3 d-flex align-items-center">
                 <FaUser className='d-inline '/>
@@ -98,41 +119,5 @@ console.log('Username:', username);
 };
 
 
-//   <>
-  //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  //   <div className="container-fluid">
-  //     <button
-  //       className="navbar-toggler"
-  //       type="button"
-  //       data-bs-toggle="collapse"
-  //       data-bs-target="#navbarTogglerDemo03"
-  //       aria-controls="navbarTogglerDemo03"
-  //       aria-expanded="false"
-  //       aria-label="Toggle navigation"
-  //     >
-  //       <span className="navbar-toggler-icon" />
-  //     </button>
-  //     <a className="navbar-brand" href="#">
-  //       <img src={logo} style={{width:"50px",height:"50px"}}/>
-  //     </a>
-  //     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-  //       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-  //         <li className="nav-item">
-  //           <Link to="/" className="nav-link active" aria-current="page" href="#">
-  //             Album
-  //           </Link>
-  //         </li>
-  //         <li className="nav-item">
-  //           <a className="nav-link" href="#">
-  //             Memories
-  //           </a>
-  //         </li>
-  //       </ul>
-  //       <div>
-  //           {/* <span className='ms-2'>Account</span> */}
-  //           <span className='ms-2'>Sign-up</span>
-  //           <span className='ms-3'>Login</span></div>
-  //     </div>
-  //   </div>
-  // </nav>
+
 export default CustomNavbar

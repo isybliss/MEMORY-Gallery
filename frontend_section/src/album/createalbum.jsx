@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 
 function CreateAlbum() {
+  const valueString = sessionStorage?.getItem('token');
+
+// Parse the JSON-like string into a JavaScript object
+const currentUser = JSON?.parse(valueString);
+// Extract the properties
+const token = currentUser?.token;
+const userId = currentUser?.user_id;
   const [albumData, setAlbumData] = useState({
     title: '',
-    // description: '',
-    // coverImage: null,
+     description: '',
+    coverImage: null,
+    id:0,
   });
   const navigate= useNavigate();
 
@@ -14,32 +22,33 @@ function CreateAlbum() {
     setAlbumData({ ...albumData, [name]: value });
   };
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
 
    
-  //   const reader = new FileReader();
-  //   reader.onload = (event) => {
-  //     const base64String = event.target.result;
-  //     setAlbumData({ ...albumData, coverImage: base64String });
-  //   };
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64String = event.target.result;
+      setAlbumData({ ...albumData, coverImage: base64String });
+    };
 
    
-  //   reader.readAsDataURL(file);
-  // };
+    reader.readAsDataURL(file);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    debugger;
     // Create a JSON object with the album data
     const jsonData = {
+      id:userId,
       title: albumData.title,
-      // description: albumData.description,
-      // coverImage: albumData.coverImage, // This is now a JSON-encoded string
+      description: albumData.description,
+      coverImage: albumData.coverImage, // This is now a JSON-encoded string
     };
 
     // Make an API request to create the album with JSON data
-    fetch('/api/albums', {
+    fetch("https://memorygallery.onrender.com/albums/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -80,7 +89,7 @@ function CreateAlbum() {
         </div>
         <button type="submit" className='p-2 w-25 text-center border-none rounded-5 ms-4 btn btn-primary'>Create</button>
 
-        {/* <div className='row mb-4 d-flex justify-content-center'>
+        <div className='row mb-4 d-flex justify-content-center'>
         <div className='col-lg-6 mb-3 ms-2'>
           <label className='text-lg-start text-center'>Cover Image:</label>
           <input
@@ -101,7 +110,7 @@ function CreateAlbum() {
             onChange={handleInputChange}
           />
         </div>
-        </div> */}
+        </div> 
 
        
         
