@@ -1,14 +1,9 @@
-
-
-
-
-
-
-
-U&*('=\]-=0p9iuhvfc   1`1 ]'[ '=------------\\
-]
-
-=\]`
+import React, { useState } from 'react';
+import '../Home.css';
+import { Link } from 'react-router-dom';
+import logo from '../images/memory-logo.png';
+import $ from "jquery";
+import {FaUser} from "react-icons/fa";
 
 const CustomNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,9 +17,9 @@ const token = currentUser?.token;
 const userId = currentUser?.user_id;
 const username = currentUser?.username;
 // Log the retrieved values to the console
-console.log('Token:', token);
-console.log('User ID:', userId);
-console.log('Username:', username);
+// console.log('Token:', token);
+// console.log('User ID:', userId);
+// console.log('Username:', username);
   function toggle(){
     $("#panel").slideToggle();
 } 
@@ -62,20 +57,35 @@ const handlelogout=()=>{
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">Home</a>
               </li>
+             
               </Link>
+              {currentUser !== null ?
+              <>
+              <Link to="/userprofile">
               <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
+                <a className="nav-link" href="#">Profile</a>
               </li>
+              </Link>
+
+                <Link to="/createalbum">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Create Album</a>
+              </li>
+              </Link>
+              </>
+              :(<></>)
+              }
+              
               
             </ul>
           
             <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {currentUser !== null ? <Link to="/signup">
+              {currentUser !== null ? 
               <li className="nav-item me-3">
                 <a className="nav-link fw-bold" aria-disabled="true">Hi, {username}</a>
               </li>
-              </Link> : (
+               : (
             <Link to="/signup">
               <li className="nav-item me-3">
                 <a className="nav-link fw-bold" aria-disabled="true">Sign-up</a>

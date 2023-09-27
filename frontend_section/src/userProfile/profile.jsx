@@ -3,47 +3,66 @@ import isy from '../images/isy.jpg'
 import axios from 'axios';
 const Profile = () => {
     const [userData, setUserData] = useState({});
-    const apiUrl = "http://127.0.0.1:8000/profile/"
-    const valueString = sessionStorage.getItem('token');
-    const currentUser = JSON.parse(valueString);
-    const yourAuthToken = JSON.stringify(currentUser.token);
+    
+    const valueString = sessionStorage?.getItem('token');
 
-    // const userId = currentUser.user_id;
-    // const username = currentUser.username;
-
+// Parse the JSON-like string into a JavaScript object
+const currentUser = JSON?.parse(valueString);
+// Extract the properties
+const token = currentUser?.token;
+const userId = currentUser?.user_id;
+   
 
     useEffect(() => {
-        
+      const fetchdetail = async ()=>{
         debugger;
-        axios.get(apiUrl, { headers: { Authorization: `Token ${yourAuthToken}` } })
+        const valueString = sessionStorage.getItem('token');
+  // const apiUrl = "http://127.0.0.1:8000/profile/${userId}";
+  const apiUrl = `https://domvev.pythonanywhere.com/profile/${userId}/`;
+  const currentUser = JSON.parse(valueString);
+  const token = currentUser.token;
+
+  const config = {
+    headers: {
+      'Authorization': `Token ${token}`,
+      'Content-Type': 'application/json'
+    }
+  };
+       await axios.get(apiUrl, config)
           .then(response => {
             debugger
             console.log(response)
             setUserData(response.data);
           })
           .catch(error => console.error('Error fetching user profile:', error));
+        }
+        fetchdetail();
       }, []);
 
     // useEffect(() => {
     //     const valueString = sessionStorage.getItem('token');
-    //     const yourAuthToken = valueString;
-    //     const apiUrl = "http://127.0.0.1:8000/profile/"
+    //     const apiUrl = "https://memorygallery.onrender.com/profile/";
+    //     const currentUser = JSON.parse(valueString);
+    //     const yourAuthToken = currentUser.token;
     // debugger;
     //     // GET request to fetch user profile data
+    //     const headers={
+    //         'Authorization': `Token ${yourAuthToken}`
+    //       }
     //     fetch(apiUrl, {
     //       method: 'GET',
     //       headers: {
-    //         'Authorization': `Token ${yourAuthToken}`
+    //         headers:headers
     //       }
     //     })
     //       .then(response => response.json())
     //       .then(data => {
     //         debugger;
-    //         console.log(data);
+    //         console.log("hello", data);
     //         setUserData(data);
     //       })
     //       .catch(error => console.error('Error fetching user profile:', error));
-    //   }, [apiUrl]);
+    //   }, []);
   return (
     <div className='container col-12 mt-3'>
         <h3 className='mb-4'>My Profile</h3>
