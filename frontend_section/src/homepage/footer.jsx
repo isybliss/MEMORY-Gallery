@@ -54,7 +54,7 @@ const Footer = () => {
         <span>Get connected with us on social networks:</span>
       </div>
       {/* Left */}
-      {/* Right */}
+  
       <div>
         <a href className="text-white me-4">
           <i className="fab fa-facebook-f" />
