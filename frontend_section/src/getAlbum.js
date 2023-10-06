@@ -79,8 +79,8 @@ function PhotoAlbum() {
         <div className="photo-gallery">
           {photos?.map((item, index) => (
             <div className="photo" key={index} onClick={() => getImg(item.imageUrl, item.title, item.description)}>
-              <div className="">
-                <img src={item.imageUrl} alt="hello" style={{ width: '100%' }} />
+              <div className="card shadow-sm rounded-3 ">
+                <img src={item.imageUrl} alt="hello" style={{ width: '447px', height:'400px' }} />
                 {/* <div className="card-body">
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">{item.description}</p>

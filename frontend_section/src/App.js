@@ -9,7 +9,7 @@ function App() {
     <div className="App">
     <CustomNavbar/>
     <Router/>
-    {/*<Footer/>*/}
+    <Footer/>
     </div>
   
   )

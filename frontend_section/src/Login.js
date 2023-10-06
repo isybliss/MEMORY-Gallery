@@ -4,10 +4,13 @@ import './Signup_login.css';
 import { toast } from 'react-toastify';
 import axios from "axios";
 import Toaster from './Alert/sweetAlert';
+import { FaEye } from 'react-icons/fa6';
+import { FaEyeSlash } from 'react-icons/fa6';
 
 function  Login() {
     const [username, usernameupdate] = useState("");
     const [password, passwordupdate] = useState("");
+    const [passwordtype, setPasswordtype] = useState("password")
 
     const navigate = useNavigate();
 
@@ -19,9 +22,9 @@ function  Login() {
     const proceedLogin = (e) => {
         e.preventDefault();
             debugger;
-         
-            // let url = "https://domvev.pythonanywhere.com/login/";
-            let url = "http://127.0.0.1:8000/login/";
+             
+             let url = "https://domvev.pythonanywhere.com/login/";
+            // let url = "http://127.0.0.1:8000/login/";
             axios.post(url, userData)
               .then((res) =>{
                 debugger;
@@ -51,6 +54,13 @@ function  Login() {
         //     toast.error("Login failed due to: " + err.message);
         //   });
     }
+    const toggle = () => {
+        if (passwordtype === "password") {
+            setPasswordtype("text");
+          return;
+        }
+        setPasswordtype("password");
+      };
 
     useEffect(() => {
         sessionStorage.clear();
@@ -83,11 +93,13 @@ function  Login() {
                         value={username} onChange={e=>usernameupdate(e.target.value)} className='form-control' />
                     </div>
                     
-                    <div className='inputs'>
+                    <div className='inputs position-relative'>
                         <label htmlFor='password'><strong>Password</strong><span className='errmsg'>*</span></label>
-                        <input type='password' required placeholder='Enter Password' name='password'
+                        <input type={passwordtype} id="password" required placeholder='Enter Password' name='password'
                         value={password} onChange={e=>passwordupdate(e.target.value)} className='form-control' />
-                        
+                        {passwordtype === "password" ?  <FaEye className='position-absolute' onClick={toggle} style={{top:"38px", right:"20px"}}/> :
+                          <FaEyeSlash className='position-absolute' style={{top:"38px", right:"20px"}} onClick={toggle}/>}
+                       
                     </div>
                     <button type='submit' className='btn-success rounded submit'>Login</button>
                     <p className='forgot-password'>Don't have an account ?</p>

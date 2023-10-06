@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Signup_login.css';
 import { toast } from 'react-toastify';
-
+import axios from "axios";
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 function Signup() {
 
     const [username, usernamechange] = useState("");
     const [email, emailchange] = useState("");
     const [password, passwordchange] = useState("");
+    const [passwordtype, setPasswordtype]= useState("password")
 
     const navigate = useNavigate();
 
@@ -46,20 +48,20 @@ function Signup() {
             password, };
         // if (isValidate()) {
             // fetch("https://domvev.pythonanywhere.com/register/",
-            fetch("http://127.0.0.1:8000/register/",
-             {  // Updated fetch URL
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(regobj),
-            })
+            axios.post("https://domvev.pythonanywhere.com/register/",regobj )
+               // Updated fetch URL
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify(regobj),
+            // })
                 .then((res) => {
                     debugger;
-                    if (!res.ok) {
+                    if (res.status !== 201) {
                         throw new Error('Network response was not ok');
                     }
                     toast.success('Registration Successful');
                     console.log("successful")
-                    navigate('login/');
+                    navigate('/login');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -67,6 +69,14 @@ function Signup() {
                 });
         // }
     };
+    const toggle = ()=>{
+        if(passwordtype === "password"){
+            setPasswordtype("text")
+            return;
+        }else{
+            setPasswordtype("password");
+        }
+    }
     return (
         <div className='d-flex justify-content-center align-items-center vh-100 bg-color'>
             <div className='rounded container-1'>
@@ -86,10 +96,13 @@ function Signup() {
                         value={email} onChange={e=>emailchange(e.target.value)} className='form-control' />
                        
                     </div>
-                    <div className='inputs'>
+                    <div className='inputs position-relative'>
                         <label htmlFor='password'><strong>Password</strong><span className='errmsg'>*</span></label>
-                        <input type='password' required placeholder='Enter Password' name='password'
-                        value={password} onChange={e=>passwordchange(e.target.value)} className='form-control' />
+                        <input type={passwordtype} id="password" required placeholder='Enter Password' name='password'
+                        value={password} onChange={e=>passwordchange(e.target.value)} className='form-control' />{passwordtype === "password" ? 
+                        <FaEye className='position-absolute' onClick={toggle} style={{top:"38px", right:"20px"}}/> :
+                        <FaEyeSlash className='position-absolute' onClick={toggle} style={{top:"38px", right:"20px"}}/> 
+                        }
                         
                     </div>
                     <button type='submit' className='btn-success rounded submit'>Sign up</button>

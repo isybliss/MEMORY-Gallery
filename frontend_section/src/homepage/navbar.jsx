@@ -61,8 +61,8 @@ const handlelogout=()=>{
               </Link>
               {currentUser !== null ?
               <>
-              <Link to="/userprofile">
-              <li className="nav-item">
+              <Link to="/userprofile" className='hvr-underline'>
+              <li className="nav-item hvr-underline">
                 <a className="nav-link" href="#">Profile</a>
               </li>
               </Link>
@@ -70,6 +70,24 @@ const handlelogout=()=>{
                 <Link to="/createalbum">
               <li className="nav-item">
                 <a className="nav-link" href="#">Create Album</a>
+              </li>
+              </Link>
+
+              <Link to="/albums">
+              <li className="nav-item">
+                <a className="nav-link" href="#">My Album</a>
+              </li>
+              </Link>
+
+              <Link to="/creatememory">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Create Memory</a>
+              </li>
+              </Link>
+              
+              <Link to="/createalbum">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Memories</a>
               </li>
               </Link>
               </>

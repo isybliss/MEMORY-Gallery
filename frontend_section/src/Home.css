@@ -1,3 +1,7 @@
+body{
+  margin:0;
+  padding:0;
+}
 .home-header{
     width: 100%;
     background-color: rgb(0, 166, 255);
@@ -34,4 +38,41 @@
     border-bottom: 1px solid red; /* Change the color for the default active tab */
   }
 
+  .image-container {
+    position: relative;
+    
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 85%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .carousel-cell {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire cell */
+  }
+
+  .bg_image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/long.jpg");
+    background-size: cover;
+    width:100%;
+    height:60vh;
+  }
+  
   
