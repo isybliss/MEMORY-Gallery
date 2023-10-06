@@ -86,12 +86,13 @@ const Footer = () => {
           {/* Grid column */}
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             {/* Content */}
-            <h6 className="text-uppercase fw-bold">Company name</h6>
+            <h6 className="text-uppercase fw-bold">Memory Gallery</h6>
             <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px', backgroundColor: '#7c4dff', height: '2px'}} />
             <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
+              A Digital Journet Through Memories
+            </p>
+            <p>
+              An application to create, store, share personal memories through images and captions.
             </p>
           </div>
           {/* Grid column */}
@@ -138,9 +139,9 @@ const Footer = () => {
             {/* Links */}
             <h6 className="text-uppercase fw-bold">Contact</h6>
             <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px', backgroundColor: '#7c4dff', height: '2px'}} />
-            <p><i className="fas fa-home mr-3" /> New York, NY 10012, US</p>
-            <p><i className="fas fa-envelope mr-3" /> info@example.com</p>
-            <p><i className="fas fa-phone mr-3" /> + 01 234 567 88</p>
+            <p><i className="fas fa-home mr-3" /> Isolo, Lagos, Nig</p>
+            <p><i className="fas fa-envelope mr-3" /> isybliss@gmail.com</p>
+            <p><i className="fas fa-phone mr-3" /> + 2348168102759</p>
             <p><i className="fas fa-print mr-3" /> + 01 234 567 89</p>
           </div>
           {/* Grid column */}

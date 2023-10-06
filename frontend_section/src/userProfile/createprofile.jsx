@@ -97,7 +97,7 @@ const config = {
           <input type="text" required id="username" className='form-control' name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         </div>
-        <button type="submit" className='mt-3 p-2 btn btn-primary'>Edit Profile</button>
+        <button type="submit" className='mt-3 p-2 btn btn-primary'>Save Profile</button>
       </form>
       </div>
       </div>
