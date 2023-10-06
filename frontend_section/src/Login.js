@@ -19,25 +19,40 @@ function  Login() {
         password,
       };
   
-    const proceedLogin = (e) => {
+    const proceedLogin = async (e) => {
         e.preventDefault();
             debugger;
-             
-             let url = "https://domvev.pythonanywhere.com/login/";
+            try{
+                             let url = "https://domvev.pythonanywhere.com/login/";
             // let url = "http://127.0.0.1:8000/login/";
-            axios.post(url, userData)
-              .then((res) =>{
-                debugger;
-                console.log(res)
-                let token= JSON.stringify(res.data);
+           const response= await  axios.post(url, userData)
+           if(response.status === 201 || response.status === 200){
+            let token= JSON.stringify(response.data);
                 if (token !== null) {
-                    sessionStorage.setItem("token", token);
-                }
-               Toaster().successAlert("You've logged In Successfully", "/")
-            })
-            .catch((err) => {
-                toast.error("Login failed due to: " + err.message);
-            });
+                 sessionStorage.setItem("token", token);
+                 Toaster().successAlert("You've logged In Successfully", "/")
+             }
+           }else{
+            Toaster().errorAlert("Invalid Password or Email.")
+           }
+        }catch(error){
+            console.error(error);
+            Toaster().errorAlert("Invalid Password or Email.")
+        }
+            //   .then((res) =>{
+            //     debugger;
+            //     console.log(res)
+            //     else{
+            //         
+            //     }
+               
+            // })
+            // .catch((err) => {
+            //     toast.error("Login failed due to: " + err.message);
+            // });
+        
+
+        
         // debugger;
         // e.preventDefault();
         // let url ="http://127.0.0.1:8000/login/";

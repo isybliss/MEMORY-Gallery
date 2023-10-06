@@ -85,11 +85,10 @@ const Memories =  () => {
        
         const config = {
           headers: {
-            'Authorization': `Token ${currentUser}`,
-            'Content-Type': 'multipart/form-data'
+            'Authorization': `Token ${currentUser.token}`,
+            
           }
         };
-
         const response =  await axios.post("https://domvev.pythonanywhere.com/memory/", formData, config)
          debugger;
           console.log(response)
