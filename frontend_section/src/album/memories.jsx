@@ -49,8 +49,8 @@ const Memories =  () => {
         const Apiurl = "https://domvev.pythonanywhere.com/albums/"
         const config = {
           headers: {
-            'Authorization': `Token ${currentUser}`,
-            'Content-Type': 'multipart/form-data'
+            'Authorization': `Token ${currentUser.token}`,
+            // 'Content-Type': 'application/json'
           }
         };
         
