@@ -85,7 +85,7 @@ const handlelogout=()=>{
               </li>
               </Link>
               
-              <Link to="/createalbum">
+              <Link to="/memory/">
               <li className="nav-item">
                 <a className="nav-link" href="#">Memories</a>
               </li>

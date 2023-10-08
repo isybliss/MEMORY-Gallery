@@ -49,10 +49,34 @@ const Profile = () => {
           <div className='card p-2 shadow-lg'>
             <div className='row justify-content-around align-items-center'>
           <div className='col-lg-6 text-center'>
-            <div className='mb-3 mt-2 img-responsive'>
+            {/* <div className='mb-3 mt-2 img-responsive'>
               <img src={`https://domvev.pythonanywhere.com${userData?.profile_picture}`}
                style={{ width: "160px", height: "160px", borderRadius: "100px" }} alt="Profile" />
-            </div>
+            </div> */}
+            <div className='mb-3 mt-2 img-responsive'>
+  {userData?.image ? (
+    <img
+      src={`https://domvev.pythonanywhere.com${userData.profile_picture}`}
+      style={{ width: "160px", height: "160px", borderRadius: "100px" }}
+      alt="Profile"
+    />
+  ) : (
+    <div
+      style={{
+        width: "160px",
+        height: "160px",
+        borderRadius: "100px",
+        backgroundColor: "gray",
+        display:"inline-block"
+      }}
+    >
+      <span style={{ color: "white" }}>Avatar</span>
+    </div>
+  )}
+</div>
+
+
+
             <div className='mb-3'>
               <h4>Bio</h4>
               <p> {userData?.bio}</p>

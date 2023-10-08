@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import "../photo.css";
 import axios from "axios";
 import { Card, Button,Row, Col } from 'react-bootstrap';
-function GetAlbum() {
-  const [albums, setAlbums] = useState([]);
+import GetMemories from '../getMemories';
+function GetMemory() {
+  const [memories, setMemories] = useState([]);
   const [model, setModel] = useState(false);
   const [tempImageDetails, setTempImageDetails] = useState(null);
-  const navigate = useNavigate();
+    const {id}= useParams();
   useEffect(() => {
     const fetchAlbum = async () => {
       try {
         const valueString = sessionStorage.getItem('token');
         const currentUser = JSON.parse(valueString);
         const userId = currentUser?.user_id;
-
-        const apiUrl = "https://domvev.pythonanywhere.com/albums/";
+        debugger;
+        const apiUrl = `https://domvev.pythonanywhere.com/albums/memories/${id}/`;
+        
         const config = {
           headers: {
             'Authorization': `Token ${currentUser.token}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data',
           }
         };
-
+        debugger;
         const response = await axios.get(apiUrl, config);
-        console.log(response.data.albums);
-        setAlbums(response.data.albums);
+        console.log(response.data);
+        setMemories(response.data);
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }
@@ -33,14 +35,10 @@ function GetAlbum() {
     fetchAlbum();
   }, []);
 
-  const getImg = (cover_photo, title, description) => {
-    setTempImageDetails({ cover_photo, title, description });
+  const getImg = (image, caption, video) => {
+    setTempImageDetails({ image, caption, video });
     setModel(true);
   };
-
-  const handlelmemorybyAlbum = (itemId)=>{
-    navigate(`/memories/${itemId}`)
-  }
 
   return (
     // <>
@@ -73,26 +71,30 @@ function GetAlbum() {
     // </>
     <>
     <div className="container-fluid">
-      <h1 className='text-center fw-bold mb-3'>My Album</h1>
+      <h1 className='text-center fw-bold mb-3'>My Memories</h1>
     <Row xs={1} md={2} lg={3} className="g-4">
-      {albums && albums.length > 0 && albums.map((item, index) =>{
-        const dateobj = new Date(item.date_created);
+      {memories && memories.length > 0 && memories.map((item, index) =>{
+        const dateobj = new Date(item.date);
         const option= {year:"numeric", month:"long", day:"numeric"};
         const formatdate = dateobj.toLocaleDateString(undefined, option);
-       
 
         return (
             <Col key={index}>
-        <Card  style={{ width: '18rem', margin: '10px',height:"250px" }}
-        onClick={()=>handlelmemorybyAlbum(item.id)}
-        //  onClick={() => getImg(item.cover_photo, item.title, item.description)}
-         >
+        <Card  style={{ width: '18rem', margin: '10px',height:"250px" }} onClick={() => getImg(item.image, item.caption, item.video)}>
           <div style={{
         position: 'relative',
         overflow: 'hidden',
         borderRadius: '10px'
       }}>
-        <Card.Img variant="top" src={`https://domvev.pythonanywhere.com${item.cover_photo}`} style={{width:"288px", height:"250px"}} className='img-fluid'/>
+        {item.image ?
+        <Card.Img variant="top" src={item.image} style={{width:"288px", height:"250px"}} className='img-fluid'/>: (
+            <video
+              controls
+              src={item.video}
+              alt={item.caption}
+              style={{ width: '288px', height: '250px', objectFit: 'cover' }}
+            />
+          )}
         <div style={{
           position: 'absolute',
           bottom: '0',
@@ -102,6 +104,7 @@ function GetAlbum() {
           padding: '10px',
           boxSizing: 'border-box'
         }} className='fs-4 '>
+            
           
           {formatdate}
         </div>
@@ -113,13 +116,16 @@ function GetAlbum() {
 </Row>
     </div>
 
-    {/* {tempImageDetails && (
+    {tempImageDetails && (
       <div className={model ? 'model open' : 'model'}>
         <div className="position-relative">
-          <img src={`https://domvev.pythonanywhere.com/${tempImageDetails.cover_photo}`} alt={tempImageDetails.title} />
+            {tempImageDetails.image ?
+          <img src={tempImageDetails.image} alt={tempImageDetails.caption} />:
+          (<video src={tempImageDetails.video }  
+          style={{ width: '288px', height: '250px', objectFit: 'cover' }} controls/>)}
           <div className="position-absolute ms-3 text-white">
-            <h5 className="card-title">{tempImageDetails.title}</h5>
-            <p className="card-text">{tempImageDetails.description}</p>
+            <h5 className="card-title">{tempImageDetails.caption}</h5>
+            <p className="card-text">{tempImageDetails?.description}</p>
           </div>
         </div>
         <div className="close" onClick={() => setModel(false)}>
@@ -129,9 +135,9 @@ function GetAlbum() {
         </div>
         
       </div>
-    )} */}
+    )}
   </>
   );
 };
 
-export default GetAlbum;
+export default GetMemory;

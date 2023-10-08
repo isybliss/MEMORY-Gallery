@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
+import Toaster from '../Alert/sweetAlert';
 const Memories =  () => {
     const [memoryData, setMemoryData] = useState({
         caption: '',
@@ -17,7 +18,7 @@ const Memories =  () => {
     
       const handleInputChange = (e) => {
         const { name, value, files } = e.target;
-        if(name === "cover_photo" || name === "video" ){
+        if(name === "image" || name === "video" ){
           setMemoryData({ ...memoryData, [name]: files[0] })
         }else{
           setMemoryData({...memoryData, [name]: value})
@@ -78,7 +79,7 @@ const Memories =  () => {
         try{
         const formData = new FormData();
         formData.append("caption", memoryData.caption);
-        formData.append("cover_photo", memoryData.image);
+        formData.append("image", memoryData.image);
         formData.append("video", memoryData.video);
         formData.append('album', memoryData.album);
        
@@ -92,8 +93,10 @@ const Memories =  () => {
         const response =  await axios.post("https://domvev.pythonanywhere.com/memory/", formData, config)
          debugger;
           console.log(response)
+          Toaster().successAlert("memory added successfully!")
         }catch(error){
           console.log(error)
+          Toaster().errorAlert("An errror occurred during upload!")
         }
       };
     
@@ -142,6 +145,7 @@ const Memories =  () => {
                 name="image"
                 className='form-control'
                 onChange={handleInputChange}
+                id="image"
               />
             </div>
 

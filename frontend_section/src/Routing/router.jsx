@@ -9,6 +9,9 @@ import Memories from '../album/memories'
 import EditProfile from '../userProfile/editprofile'
 import CreateProfileComponent from '../userProfile/createprofile'
 import  GetAlbum from '../album/getalbum'
+import GetMemories from '../getMemories'
+import GetMemory from '../album/getmemories'
+import GetAllMemory from '../album/getallmemories'
 
 const Router = () => {
   return (
@@ -20,9 +23,10 @@ const Router = () => {
     <Route path='/signup' element={<Signup />}></Route>
     <Route path="/creatememory" element={<Memories/>}/>
     <Route path="/create" element={<CreateProfileComponent/>}/>
-    
+    <Route path="/memories/:id" element={<GetMemory/>}/>
     <Route path='/createalbum' element={<CreateAlbum/>}/>
     <Route path='/albums' element={<GetAlbum/>}/>
+    <Route path='/memory' element={<GetAllMemory/>}/>
   </Routes>
   )
 }
