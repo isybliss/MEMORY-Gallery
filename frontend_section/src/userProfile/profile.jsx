@@ -54,7 +54,7 @@ const Profile = () => {
                style={{ width: "160px", height: "160px", borderRadius: "100px" }} alt="Profile" />
             </div> */}
             <div className='mb-3 mt-2 img-responsive'>
-  {userData?.image ? (
+  {userData?.image !== null ? (
     <img
       src={`https://domvev.pythonanywhere.com${userData.profile_picture}`}
       style={{ width: "160px", height: "160px", borderRadius: "100px" }}
